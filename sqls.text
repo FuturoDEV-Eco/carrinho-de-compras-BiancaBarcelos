@@ -47,3 +47,12 @@ ___________________________________
 [M2S06] - Ex. 04 - Listagem de produtos
 
 select * from products
+
+___________________________________
+
+[M2S06] - Ex. 05 - Listagem de um produto com detalhes
+
+SELECT p.name, p.amount, p.color, p.voltage, p.description, c.name AS category_name
+FROM products p
+INNER JOIN categories c ON p.category_id = c.id 
+WHERE p.id = ${idProduto}
