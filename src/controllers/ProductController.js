@@ -34,6 +34,14 @@ class ProductController{
         }
     }
 
+    async listarTodos(request, response) {
+        try {
+            const produtos = await conexao.query("select * from products")
+            response.json(produtos.rows)
+        } catch (error) {
+            response.status(500).json({ mensagem: 'Não possivel listar os produtos' })
+        }
+    }
 }
 
 module.exports = new ProductController()

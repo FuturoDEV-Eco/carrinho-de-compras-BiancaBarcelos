@@ -42,4 +42,8 @@ CREATE TABLE products (
             REFERENCES categories(id)
 );
 
+___________________________________
 
+[M2S06] - Ex. 04 - Listagem de produtos
+
+select * from products
