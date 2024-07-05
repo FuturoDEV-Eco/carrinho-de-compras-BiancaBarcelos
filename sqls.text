@@ -1,0 +1,45 @@
+[M2S06] - Ex. 02 - Cadastro de clientes:
+
+create table clients (
+	id serial primary key,
+	name varchar(150) not null,
+	email varchar(150) unique not null,
+	cpf varchar(50) unique not null,
+	contact varchar(20) not null
+)
+
+___________________________________
+
+[M2S06] - Ex. 03 - Cadastro de produto
+
+create table categories (
+	id serial primary key,
+	name varchar(150) not null
+)
+
+INSERT INTO categories (name) VALUES 
+('Categoria 1'),
+('Categoria 2'),
+('Categoria 3'),
+('Categoria 4'),
+('Categoria 5'),
+('Categoria 6'),
+('Categoria 7'),
+('Categoria 8'),
+('Categoria 9'),
+('Categoria 10');
+
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    amount VARCHAR(150) UNIQUE DEFAULT '0',
+    color VARCHAR(50),
+    voltage INTEGER CHECK (voltage IN (110, 220)),
+    description TEXT,
+    category_id INTEGER NOT NULL,
+    CONSTRAINT fk_category
+        FOREIGN KEY(category_id) 
+            REFERENCES categories(id)
+);
+
+

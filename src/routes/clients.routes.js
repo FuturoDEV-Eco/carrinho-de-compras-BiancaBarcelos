@@ -4,7 +4,6 @@ const ClientController = require('../controllers/ClientController')
 
 const clientsRoutes = new Router()
 
-clientsRoutes.post("/cadastrarcliente", ClientController.criar)
+clientsRoutes.post("/cadastrar", ClientController.criar)
 
-//declarar aqui as rotas
 module.exports = clientsRoutes
