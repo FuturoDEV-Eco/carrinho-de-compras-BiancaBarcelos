@@ -20,15 +20,15 @@ class ProductController{
                 })
             }
 
-            const servico = await conexao.query(`
+            const produto = await conexao.query(`
                 INSERT into products
-                    (name, amount, color, voltage, description, category_id)
+                    (name, amount, color, voltage, description, category_id, price)
                     values
-                    ($1, $2, $3, $4, $5, $6)
+                    ($1, $2, $3, $4, $5, $6, $7)
                     returning *
-                `, [dados.name, dados.amount, dados.color, dados.voltage, dados.description, dados.category_id])
+                `, [dados.name, dados.amount, dados.color, dados.voltage, dados.description, dados.category_id, dados.price])
 
-            response.status(201).json(servico.rows[0])
+            response.status(201).json(produto.rows[0])
         } catch (error) {
             response.status(500).json({ mensagem: 'Não possivel cadastrar o produto '})
         }
