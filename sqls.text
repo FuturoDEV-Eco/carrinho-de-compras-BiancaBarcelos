@@ -40,6 +40,7 @@ CREATE TABLE products (
     CONSTRAINT fk_category
         FOREIGN KEY(category_id) 
             REFERENCES categories(id)
+    price decimal(10,2)
 );
 
 ___________________________________
@@ -56,3 +57,33 @@ SELECT p.name, p.amount, p.color, p.voltage, p.description, c.name AS category_n
 FROM products p
 INNER JOIN categories c ON p.category_id = c.id 
 WHERE p.id = ${idProduto}
+
+___________________________________
+
+[M2S06] - Ex. 06 - Cadastro de carrinho
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    total DECIMAL(10,2),
+    address TEXT,
+    observations TEXT,
+	client_id INTEGER NOT NULL,
+    CONSTRAINT fk_client
+        FOREIGN KEY(client_id) 
+            REFERENCES clients(id)
+);
+
+
+CREATE TABLE orders_items (
+    id SERIAL PRIMARY KEY,
+    order_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
+    amount TEXT,
+    price DECIMAL(10,2),
+    CONSTRAINT fk_order
+        FOREIGN KEY(order_id) 
+            REFERENCES orders(id),
+    CONSTRAINT fk_product
+        FOREIGN KEY(product_id) 
+            REFERENCES products(id)
+);
